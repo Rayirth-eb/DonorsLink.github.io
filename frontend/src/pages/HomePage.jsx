@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { mockDisasters } from '../data/mock';
-import { Play, Shield, Zap, Globe, ArrowRight, AlertTriangle, TrendingUp } from 'lucide-react';
+import { mockDisasters, heroImages } from '../data/mock';
+import { Play, Shield, Zap, Globe, ArrowRight, AlertTriangle, TrendingUp, Users, Target } from 'lucide-react';
 
 const HomePage = () => {
   const [disasters, setDisasters] = useState([]);
@@ -53,10 +53,15 @@ const HomePage = () => {
     <div className="min-h-screen bg-black">
       <Header />
       
-      {/* Hero Section */}
-      <section className="hero-section">
+      {/* Enhanced Hero Section with Background */}
+      <section className="hero-section-enhanced">
+        <div className="hero-background">
+          <img src={heroImages.blockchain} alt="Blockchain Technology" className="hero-bg-image" />
+          <div className="hero-overlay"></div>
+        </div>
+        
         <div className="dark-content-container">
-          <div className="hero-content">
+          <div className="hero-content-enhanced">
             <div className="hero-text">
               <h1 className="display-huge mb-6">
                 Where Transparency
@@ -79,8 +84,8 @@ const HomePage = () => {
                 </a>
               </div>
 
-              {/* Demo Disclaimer */}
-              <div className="demo-disclaimer">
+              {/* Enhanced Demo Disclaimer */}
+              <div className="demo-disclaimer-enhanced">
                 <Shield className="w-5 h-5 text-brand-primary" />
                 <span className="body-small">
                   All transactions on this site are for demonstration purposes only
@@ -88,17 +93,26 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Stats Section */}
-            <div className="hero-stats">
-              <div className="stat-card">
+            {/* Enhanced Stats Section */}
+            <div className="hero-stats-enhanced">
+              <div className="stat-card-enhanced">
+                <div className="stat-icon">
+                  <Target className="w-8 h-8 text-brand-primary" />
+                </div>
                 <div className="stat-number">{formatCurrency(stats.totalRaised)}</div>
                 <div className="stat-label">Total Raised (Demo)</div>
               </div>
-              <div className="stat-card">
+              <div className="stat-card-enhanced">
+                <div className="stat-icon">
+                  <AlertTriangle className="w-8 h-8 text-warning" />
+                </div>
                 <div className="stat-number">{stats.activeCampaigns}</div>
                 <div className="stat-label">Active Campaigns</div>
               </div>
-              <div className="stat-card">
+              <div className="stat-card-enhanced">
+                <div className="stat-icon">
+                  <Globe className="w-8 h-8 text-info" />
+                </div>
                 <div className="stat-number">{stats.countries}</div>
                 <div className="stat-label">Countries Helped</div>
               </div>
@@ -107,8 +121,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Current Disasters Section */}
-      <section id="disasters" className="disasters-section">
+      {/* Enhanced Current Disasters Section */}
+      <section id="disasters" className="disasters-section-enhanced">
         <div className="dark-content-container">
           <div className="section-header">
             <h2 className="display-medium mb-4">Current Disasters Needing Help</h2>
@@ -118,23 +132,24 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="disasters-grid">
+          <div className="disasters-grid-enhanced">
             {disasters.map((disaster) => (
-              <div key={disaster.id} className="disaster-card dark-hover">
-                <div className="disaster-image">
+              <div key={disaster.id} className="disaster-card-enhanced glass-card glass-card-hover">
+                <div className="disaster-image-enhanced">
                   <img src={disaster.image} alt={disaster.title} />
-                  <div className="urgency-badge">
+                  <div className="urgency-badge-enhanced">
                     <AlertTriangle className="w-4 h-4" />
                     <span className={`text-sm font-medium ${getUrgencyColor(disaster.urgency)}`}>
                       {disaster.urgency}
                     </span>
                   </div>
+                  <div className="image-overlay"></div>
                 </div>
 
-                <div className="disaster-content">
+                <div className="disaster-content-enhanced">
                   <div className="disaster-meta">
-                    <span className="category-tag">{disaster.category}</span>
-                    <span className="location-tag">{disaster.location}</span>
+                    <span className="category-tag-enhanced">{disaster.category}</span>
+                    <span className="location-tag-enhanced">{disaster.location}</span>
                   </div>
 
                   <h3 className="heading-2 mb-3">{disaster.title}</h3>
@@ -142,8 +157,8 @@ const HomePage = () => {
                     {disaster.description}
                   </p>
 
-                  {/* Progress Bar */}
-                  <div className="progress-section">
+                  {/* Enhanced Progress Bar */}
+                  <div className="progress-section-enhanced">
                     <div className="progress-header">
                       <span className="body-small font-medium">
                         {formatCurrency(disaster.raised)} raised
@@ -152,9 +167,9 @@ const HomePage = () => {
                         of {formatCurrency(disaster.target)}
                       </span>
                     </div>
-                    <div className="progress-bar">
+                    <div className="progress-bar-enhanced">
                       <div 
-                        className="progress-fill"
+                        className="progress-fill-enhanced"
                         style={{ width: `${getProgressPercentage(disaster.raised, disaster.target)}%` }}
                       ></div>
                     </div>
@@ -177,8 +192,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="how-it-works">
+      {/* Enhanced How It Works Section */}
+      <section id="how-it-works" className="how-it-works-enhanced">
         <div className="dark-content-container">
           <div className="section-header text-center">
             <h2 className="display-medium mb-4">How Donors Link Works</h2>
@@ -187,10 +202,10 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="steps-grid">
-            <div className="step-card">
-              <div className="step-number">01</div>
-              <div className="step-icon">
+          <div className="steps-grid-enhanced">
+            <div className="step-card-enhanced glass-card glass-card-hover">
+              <div className="step-number-enhanced">01</div>
+              <div className="step-icon-enhanced">
                 <TrendingUp className="w-8 h-8 text-brand-primary" />
               </div>
               <h3 className="heading-3 mb-3">Enter Donation Amount</h3>
@@ -199,10 +214,10 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className="step-card">
-              <div className="step-number">02</div>
-              <div className="step-icon">
-                <Zap className="w-8 h-8 text-brand-primary" />
+            <div className="step-card-enhanced glass-card glass-card-hover">
+              <div className="step-number-enhanced">02</div>
+              <div className="step-icon-enhanced">
+                <Zap className="w-8 h-8 text-brand-accent" />
               </div>
               <h3 className="heading-3 mb-3">Automatic Conversion</h3>
               <p className="body-small text-text-secondary">
@@ -210,10 +225,10 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className="step-card">
-              <div className="step-number">03</div>
-              <div className="step-icon">
-                <Shield className="w-8 h-8 text-brand-primary" />
+            <div className="step-card-enhanced glass-card glass-card-hover">
+              <div className="step-number-enhanced">03</div>
+              <div className="step-icon-enhanced">
+                <Shield className="w-8 h-8 text-success" />
               </div>
               <h3 className="heading-3 mb-3">Direct Transfer</h3>
               <p className="body-small text-text-secondary">
@@ -221,10 +236,10 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className="step-card">
-              <div className="step-number">04</div>
-              <div className="step-icon">
-                <Globe className="w-8 h-8 text-brand-primary" />
+            <div className="step-card-enhanced glass-card glass-card-hover">
+              <div className="step-number-enhanced">04</div>
+              <div className="step-icon-enhanced">
+                <Globe className="w-8 h-8 text-info" />
               </div>
               <h3 className="heading-3 mb-3">Track & Verify</h3>
               <p className="body-small text-text-secondary">
